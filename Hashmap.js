@@ -9,6 +9,52 @@ class HashMap {
     this._deleted = 0;
   }
 
+  get(key) {
+    const index = this._findSlot(key);
+    if (this._slots[index] === undefined) {
+      throw new Error('key error');
+    }
+    return this._slots[index].value;
+  } 
+
+  set(key, value) {
+    // loadRatio needs to remain below .9 (The MAX_LOAD_RATIO). If it gets above .9,
+    // we have to resize and increase capacity. Ex: 8 + 1 = 9 (length) / 8 (capacity)
+    // loadRatio is greater than Max -> resize, capacity (8) * 3 = 24.
+
+    // Why are MAX_LOAD_RATIO and SIZE_RATIO .9 & 3, respectively?
+    // Is the +1 to ensure that the Hashmap length has a 1 item buffer before capacity?
+    const loadRatio = (this.length + this._deleted + 1) / this._capacity;
+    if (loadRatio > HashMap.MAX_LOAD_RATIO) {
+      this._resize(this._capacity * HashMap.SIZE_RATIO);
+    }
+
+    //findSlot is checking if the expected spot is available for the hashed key,
+    //if not, it iterates until it finds an empty spot.
+    const index = this._findSlot(key);
+
+    //Then, the data is inserted at that slot.
+    this._slots[index] = {
+      key,
+      value,
+      deleted: false
+    };
+
+    this.length++;
+  }
+
+  remove(key) {
+    const index = this._findSlot(key);
+    const slot = this._slots[index];
+    if (slot === undefined) {
+      throw new Error('key error');
+    } 
+    slot.deleted = true;
+    this.length--;
+    this._deleted++;
+  }
+
+
 
 
 }
