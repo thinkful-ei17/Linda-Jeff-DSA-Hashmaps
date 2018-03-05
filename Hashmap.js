@@ -13,7 +13,7 @@ class HashMap {
     const index = this._findSlot(key);
     if (this._slots[index] === undefined) {
       //throw new Error('key error');
-      return false
+      return false;
     }
     return this._slots[index].value;
   } 
@@ -129,8 +129,8 @@ const main = () => {
   lor.set('LadyOfLight', 'Galadriel');
   lor.set('HalfElven', 'Arwen');
   lor.set('Ent', 1); //testing for other drills
-  console.log(JSON.stringify(lor));
-  console.log(lor.get('Hi'));
+  // console.log(JSON.stringify(lor));
+  // console.log(lor.get('Hi'));
   //console.log(lor.get('Maiar'));
   //console.log(JSON.stringify(lor));
 };
@@ -147,8 +147,8 @@ const drillPalindrome = (string) => {
     if(palindrome.length === 0 || palindrome.get(string[i]) === false){ //first one will kick - pay attention to logic order!
     //if value does not exist, therefore letter is new
     //console.log('string letter is',string[i]);
-    palindrome.set(string[i], 1);
-     }
+      palindrome.set(string[i], 1);
+    }
     else {
       let count = palindrome.get(string[i]);
       count++; //2
@@ -160,20 +160,20 @@ const drillPalindrome = (string) => {
   let countOddInstances = 0; //must be outside for loop so it does not reset to 0 each loop instance
   for (let j = 0; j < string.length; j++){
     //console.log('hi',palindrome.get(string[j]));
-     if(palindrome.get(string[j]) % 2 !== 0){ //if value is odd then count number of instanes of odd values for keys ex. 10 % 2 = 0 (even)
-       countOddInstances++
-       console.log('countOddInstances else', countOddInstances);
-     }
+    if(palindrome.get(string[j]) % 2 !== 0){ //if value is odd then count number of instanes of odd values for keys ex. 10 % 2 = 0 (even)
+      countOddInstances++;
+      console.log('countOddInstances else', countOddInstances);
+    }
   }
 
   if(countOddInstances > 1) {
     console.log('countOddInstances', countOddInstances);
-    return false
+    return false;
   }
   return true;
-}
+};
 
-console.log(drillPalindrome('tattarrattat'));
+// console.log(drillPalindrome('tattarrattat'));
 /*
 
 Palindrome = aa, aba, aabbb
@@ -234,6 +234,33 @@ Write an algorithm to group a list of words into anagrams. For example, if the i
 
 FIND AND GROUP ANAGRAM WORDS COUNT 
 DOUBLE FOR LOOP
-
-
 */
+
+//
+
+const drillAnagram = (arr) => {
+  const anagram = new HashMap();
+
+  // for (let i=0; i < arr.length; i++) {
+  //   for (let j=0; i < arr[i].length; i++) {
+  //     anagram.set(arr[i][j], i);
+  //   }
+  // }
+
+  console.log(JSON.stringify(anagram));
+
+  //1. Loop over each string -> store the string to a key/value.  key: 'east', value: 1.
+
+  //2. Loop over each key/value pair -> when a key/value pair matches .string(includes(value)),
+  //push both into a new Array.
+
+  // for (let i = 0; i < arr.length; i++) {
+  //   if (anagram.get(arr[j])) {
+  //   }
+  // }
+};
+
+drillAnagram(['east', 'eats', 'cars']);
+
+//Input: ['east', 'eats', 'cars']
+//Output: [['east', 'eats'] ['cars']]
