@@ -91,10 +91,15 @@ class HashMap {
     }
   }
 
-
-
-
-
-
-
+  static _hashString(string) {
+    let hash = 5381;
+    for (let i=0; i<string.length; i++) {
+        hash = (hash << 5) + hash + string.charCodeAt(i);
+        hash = hash & hash;
+    }
+    return hash >>> 0;
+  }
 }
+
+HashMap.MAX_LOAD_RATIO = 0.9;
+HashMap.SIZE_RATIO = 3;
