@@ -76,20 +76,22 @@ class HashMap {
 
   _resize(size) {
     const oldSlots = this._slots;
-    this._capacity = size;
+    this._capacity = size; //capacity will now be set to old capacity (all of the available slots we started initally with, ignoring whether the slot has data or not)
+    //times size ratio
     // Reset the length - it will get rebuilt as you add the items back
     this.length = 0;
     this._deleted = 0;
     this._slots = [];
 
     for (const slot of oldSlots) {
-      if (slot !== undefined && !slot.deleted) {
+      if (slot !== undefined && !slot.deleted) //only keep the slots that are empty and slots that are not deleted (dleted items are those that are marked 'true' through _remove)
+      { //copying those retained keys and values and putting them in new hash map
         this.set(slot.key, slot.value);
       }
     }
   }
 
-  
+
 
 
 
