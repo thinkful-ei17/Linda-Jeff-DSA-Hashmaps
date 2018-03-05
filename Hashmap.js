@@ -22,9 +22,9 @@ class HashMap {
     // we have to resize and increase capacity. Ex: 8 + 1 = 9 (length) / 8 (capacity)
     // loadRatio is greater than Max -> resize, capacity (8) * 3 = 24.
 
-    // Why are MAX_LOAD_RATIO and SIZE_RATIO .9 & 3, respectively?
+    // Q: Why are MAX_LOAD_RATIO and SIZE_RATIO .9 & 3, respectively?
     // For purpose of exercise, although .85-.9 is a good load ratio to use, 3 is just arbitrary for drills use
-    // Is the +1 to ensure that the Hashmap length has a 1 item buffer before capacity?
+    // Q: Is the +1 to ensure that the Hashmap length has a 1 item buffer before capacity?
     //length + deleted == current number of slots used 
     //+1 == number that WILL BE used after you add this one
     //ie +1 'loadRatio is greater than Max Load Ratio (.9), therefore, increase size
