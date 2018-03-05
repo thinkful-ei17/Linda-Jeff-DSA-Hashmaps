@@ -12,7 +12,8 @@ class HashMap {
   get(key) {
     const index = this._findSlot(key);
     if (this._slots[index] === undefined) {
-      throw new Error('key error');
+      //throw new Error('key error');
+      return false
     }
     return this._slots[index].value;
   } 
@@ -113,24 +114,126 @@ HashMap.SIZE_RATIO = 3;
 
 const main = () => {
   const lor = new HashMap();
-  lor.set('Hobbit1', 'Bilbo');
+  // lor.set('Hobbit1', 'Bilbo');
   // console.log(JSON.stringify(lor));
-  lor.set('Hobbit2', 'Frodo');
+  // lor.set('Hobbit2', 'Frodo');
   // console.log(JSON.stringify(lor));
-  lor.set('Wizard', 'Gandalf');
-  lor.set('Human', 'Aragon');
-  lor.set('Elf', 'Legolas');
-  lor.set('Maiar', 'The Necromancer');  
+  // lor.set('Wizard', 'Gandalf');
+  // lor.set('Human', 'Aragon');
+  // lor.set('Elf', 'Legolas');
+  // lor.set('Maiar', 'The Necromancer');  
   // console.log(JSON.stringify(lor));
-  lor.set('Maiar', 'Sauron');
-  lor.set('RingBearer', 'Gollum');
+  // lor.set('Maiar', 'Sauron');
+  // lor.set('RingBearer', 'Gollum');
   // console.log(JSON.stringify(lor));
   lor.set('LadyOfLight', 'Galadriel');
   lor.set('HalfElven', 'Arwen');
-  lor.set('Ent', 'Treebeard');
-  // console.log(JSON.stringify(lor));
-  console.log(lor.get('Maiar'));
-  // console.log(JSON.stringify(lor));
+  lor.set('Ent', 1); //testing for other drills
+  console.log(JSON.stringify(lor));
+  console.log(lor.get('Hi'));
+  //console.log(lor.get('Maiar'));
+  //console.log(JSON.stringify(lor));
 };
 
-main();
+//main();
+
+const drillPalindrome = (string) => {
+  const palindrome = new HashMap();
+  let isPalindrome;
+
+  console.log(palindrome);
+  //loop to break up mom and capture indiv letters to assign as keys with value of 1
+  for (let i=0; i < string.length; i++){
+    if(palindrome.length === 0 || palindrome.get(string[i]) === false){ //first one will kick - pay attention to logic order!
+    //if value does not exist, therefore letter is new
+    //console.log('string letter is',string[i]);
+    palindrome.set(string[i], 1);
+     }
+    else {
+      let count = palindrome.get(string[i]);
+      count++; //2
+      palindrome.set(string[i], count); //overrides previous value count
+    }
+  }
+  //!ONLY ONE INSTANCE OF key LETTER WITH ODD VALUE!
+  //count for number of instances of odd count
+  let countOddInstances = 0; //must be outside for loop so it does not reset to 0 each loop instance
+  for (let j = 0; j < string.length; j++){
+    //console.log('hi',palindrome.get(string[j]));
+     if(palindrome.get(string[j]) % 2 !== 0){ //if value is odd then count number of instanes of odd values for keys ex. 10 % 2 = 0 (even)
+       countOddInstances++
+       console.log('countOddInstances else', countOddInstances);
+     }
+  }
+
+  if(countOddInstances > 1) {
+    console.log('countOddInstances', countOddInstances);
+    return false
+  }
+  return true;
+}
+
+console.log(drillPalindrome('tattarrattat'));
+/*
+
+Palindrome = aa, aba, aabbb
+Not Palindrome = ab
+Any permutation a palindrome
+Write an algorithm to check whether any permutation of a string is a palindrome. Given the string "acecarr", the algorithm should return true, because the letters in "acecarr" can be rearranged to "racecar", which is a palindrome. In contrast, given the word "north", the algorithm should return false, because there's no way to rearrange those letters to be a palindrome.
+
+Notes:  IF NEW LETTER, STICK IN HASH MAP
+palindrome.set('m', 1); COUNT
+IF EXISTING KEY; REPLACE VALUE WITH +1
+!ONLY ONE INSTANCE OF key LETTER WITH ODD VALUE!
+
+-eat
+key:e
+value:1
+key: a
+value: 1
+key: t
+value: 1
+
+isPalindrome = false
+
+-dad
+key: d
+value: 2
+key: a
+value 1
+
+isPalindrome = true
+
+AMANAPLANACANALPANAMA
+key: A
+value: 10
+
+key: M
+value: 2
+
+key: N
+value: 4
+
+key: P
+value: 2
+
+key: L
+value: 2
+
+key: C
+value: 1
+
+count any time you come across the letter (same) increase value by 1 increment - loop all letters
+if more than one key with a value of 1, then we know its not a palindrome because only 1 letter can have value of 1 => return false for isPalindrome
+*/
+
+/*
+
+Anagram grouping
+Write an algorithm to group a list of words into anagrams. For example, if the input was ['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race'], the output should be: [['east', 'teas', 'eats'], ['cars', 'arcs'], ['acre', 'race']].
+
+FIND AND GROUP ANAGRAM WORDS COUNT 
+DOUBLE FOR LOOP
+
+
+*/
