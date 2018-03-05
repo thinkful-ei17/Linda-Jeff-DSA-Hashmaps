@@ -23,7 +23,10 @@ class HashMap {
     // loadRatio is greater than Max -> resize, capacity (8) * 3 = 24.
 
     // Why are MAX_LOAD_RATIO and SIZE_RATIO .9 & 3, respectively?
+    // For purpose of exercise, although .85-.9 is a good load ratio to use, 3 is just arbitrary for drills use
     // Is the +1 to ensure that the Hashmap length has a 1 item buffer before capacity?
+    //length + deleted == current number of slots used 
+    //+1 == number that WILL BE used after you add this one
     const loadRatio = (this.length + this._deleted + 1) / this._capacity;
     if (loadRatio > HashMap.MAX_LOAD_RATIO) {
       this._resize(this._capacity * HashMap.SIZE_RATIO);
