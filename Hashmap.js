@@ -241,14 +241,12 @@ DOUBLE FOR LOOP
 const drillAnagram = (arr) => {
   const anagram = new HashMap();
 
+  //Our first attempt:
   // for (let i=0; i < arr.length; i++) {
   //   for (let j=0; i < arr[i].length; i++) {
   //     anagram.set(arr[i][j], i);
   //   }
   // }
-
-  console.log(JSON.stringify(anagram));
-
   //1. Loop over each string -> store the string to a key/value.  key: 'east', value: 1.
 
   //2. Loop over each key/value pair -> when a key/value pair matches .string(includes(value)),
@@ -258,9 +256,13 @@ const drillAnagram = (arr) => {
   //   if (anagram.get(arr[j])) {
   //   }
   // }
+
+  //Chris's text: is_anagram(word1, word2)
+  //is_anagram("eats", "stea") ==> true
+  //is_anagram("acre", "cars") ==> false
 };
 
-drillAnagram(['east', 'eats', 'cars']);
+// drillAnagram(['east', 'eats', 'cars']);
 
 //Input: ['east', 'eats', 'cars']
 //Output: [['east', 'eats'] ['cars']]
