@@ -54,6 +54,20 @@ class HashMap {
     this._deleted++;
   }
 
+  _findSlot(key) {
+    const hash = HashMap._hashString(key);
+    const start = hash % this._capacity;
+
+    //starts at index slot we initially were asigned, checks if its 
+    for (let i=start; i<start + this._capacity; i++) {
+      const index = i % this._capacity;
+      const slot = this._slots[index];
+      if (slot === undefined || (slot.key == key && !slot.deleted)) {
+        return index;
+      }
+    }
+  }
+
 
 
 
