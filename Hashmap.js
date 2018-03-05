@@ -100,8 +100,8 @@ class HashMap {
   static _hashString(string) {
     let hash = 5381;
     for (let i=0; i<string.length; i++) {
-        hash = (hash << 5) + hash + string.charCodeAt(i);
-        hash = hash & hash;
+      hash = (hash << 5) + hash + string.charCodeAt(i);
+      hash = hash & hash;
     }
     return hash >>> 0;
   }
@@ -109,3 +109,28 @@ class HashMap {
 
 HashMap.MAX_LOAD_RATIO = 0.9;
 HashMap.SIZE_RATIO = 3;
+
+
+const main = () => {
+  const lor = new HashMap();
+  lor.set('Hobbit1', 'Bilbo');
+  // console.log(JSON.stringify(lor));
+  lor.set('Hobbit2', 'Frodo');
+  // console.log(JSON.stringify(lor));
+  lor.set('Wizard', 'Gandalf');
+  lor.set('Human', 'Aragon');
+  lor.set('Elf', 'Legolas');
+  lor.set('Maiar', 'The Necromancer');  
+  // console.log(JSON.stringify(lor));
+  lor.set('Maiar', 'Sauron');
+  lor.set('RingBearer', 'Gollum');
+  // console.log(JSON.stringify(lor));
+  lor.set('LadyOfLight', 'Galadriel');
+  lor.set('HalfElven', 'Arwen');
+  lor.set('Ent', 'Treebeard');
+  // console.log(JSON.stringify(lor));
+  console.log(lor.get('Maiar'));
+  // console.log(JSON.stringify(lor));
+};
+
+main();
