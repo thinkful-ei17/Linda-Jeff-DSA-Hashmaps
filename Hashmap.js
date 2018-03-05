@@ -58,15 +58,23 @@ class HashMap {
     const hash = HashMap._hashString(key);
     const start = hash % this._capacity;
 
-    //starts at index slot we initially were asigned, checks if its 
+    //starts at index slot we initially were asigned
+    //checks if the initial slot key is
     for (let i=start; i<start + this._capacity; i++) {
       const index = i % this._capacity;
-      const slot = this._slots[index];
-      if (slot === undefined || (slot.key == key && !slot.deleted)) {
+      const slot = this._slots[index]; 
+      //The constructor sets up an array called _slots which will hold all of the data; gives array to loop through 
+      //slot = undefined (ie. no data inside slot. empty slot 
+      //OR slot with matching key and it has not been deleted
+      //deleted marker is not deleting data per se but moreso pseudo deleting spot from the hashmap with 'true' boolean
+      //deleted items (marked true) get really deleted at resize
+      if (slot === undefined || (slot.key == key && !slot.deleted)) { 
         return index;
       }
     }
   }
+
+  
 
 
 
