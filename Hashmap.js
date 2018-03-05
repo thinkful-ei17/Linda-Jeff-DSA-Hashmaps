@@ -27,6 +27,9 @@ class HashMap {
     // Is the +1 to ensure that the Hashmap length has a 1 item buffer before capacity?
     //length + deleted == current number of slots used 
     //+1 == number that WILL BE used after you add this one
+    //ie +1 'loadRatio is greater than Max Load Ratio (.9), therefore, increase size
+    //length - used; deleted - not used 
+    //0 index; +1 compensate for difference
     const loadRatio = (this.length + this._deleted + 1) / this._capacity;
     if (loadRatio > HashMap.MAX_LOAD_RATIO) {
       this._resize(this._capacity * HashMap.SIZE_RATIO);
